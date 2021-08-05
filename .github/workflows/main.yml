@@ -17,3 +17,6 @@ jobs:
           cloudinary_cloud_name: ${{secrets.CLOUDINARY_CLOUD_NAME}}
           cloudinary_api_key: ${{secrets.CLOUDINARY_API_KEY}}
           cloudinary_api_secret: ${{secrets.CLOUDINARY_API_SECRET}}
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: ${{secrets.HEROKU_APP_NAME}}
+          heroku_email: ${{secrets.HEROKU_EMAIL}}
