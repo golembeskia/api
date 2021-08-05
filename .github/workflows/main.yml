@@ -4,14 +4,16 @@ on:
   push:
     branches:
       - master
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: CDNievas/heroku-action@v1.0 # This is the action
+      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
-          heroku_email: "example@email.com"
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "this-is-an-example"
+          database: ${{secrets.DATABASE}}
+          cloudinary_cloud_name: ${{secrets.CLOUDINARY_CLOUD_NAME}}
+          cloudinary_api_key: ${{secrets.CLOUDINARY_API_KEY}}
+          cloudinary_api_secret: ${{secrets.CLOUDINARY_API_SECRET}}
