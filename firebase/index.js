@@ -9,10 +9,6 @@ const Firebase_Config = JSON.stringify({
 
 //.replace(/\\n/g, '\n')
 
-console.log("---------------------------- START ----------------------------------------");
-console.log(Firebase_Config.toString());
-console.log("---------------------------  END   -----------------------------------------");
-
 if (!Firebase_Config) throw new Error('The FIREBASE_SERVICE_ACCOUNT_CREDS environment variable was not found!');
 
 firebaseAdmin.initializeApp({
