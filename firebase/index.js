@@ -9,7 +9,7 @@ const buff = Buffer.from(serviceAccount, 'base64');
 // decode buffer as UTF-8
 const str = buff.toString('ascii');
 
-console.log('serviceAccount: ' + str);
+console.log('serviceAccount: ' + JSON.parse(str));
 
 if (!serviceAccount) throw new Error('The FIREBASE_SERVICE_ACCOUNT_CREDS environment variable was not found!');
 
