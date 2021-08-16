@@ -12,7 +12,8 @@ const Firebase_Config = JSON.stringify({
 if (!Firebase_Config) throw new Error('The FIREBASE_SERVICE_ACCOUNT_CREDS environment variable was not found!');
 
 firebaseAdmin.initializeApp({
-  credential: firebaseAdmin.credential.cert(Firebase_Config.toString())
+  //credential: firebaseAdmin.credential.cert(Firebase_Config.toString())
+  credential: firebaseAdmin.credential.cert(JSON.parse(Firebase_Config))
 })
 
 module.exports = firebaseAdmin;
