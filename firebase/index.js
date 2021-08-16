@@ -5,7 +5,7 @@ const Firebase_Config = JSON.stringify({
   "private_key_id": process.env.FIREBASE_PRIVATE_KEY_ID.replace(/\\n/g, '\n'),
   "private_key": "",
   "client_email": process.env.FIREBASE_CLIENT_EMAIL
-}));
+});
 
 console.log("---------------------------- START ----------------------------------------");
 console.log(Firebase_Config);
