@@ -14,7 +14,7 @@ console.log('serviceAccount: ' + str);
 if (!serviceAccount) throw new Error('The FIREBASE_SERVICE_ACCOUNT_CREDS environment variable was not found!');
 
 admin.initializeApp({
-  credential: admin.credential.cert(str)
+  credential: admin.credential.cert(JSON.parse(str))
 })
 
 module.exports = admin;
