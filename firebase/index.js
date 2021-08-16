@@ -1,15 +1,17 @@
 var firebaseAdmin = require('firebase-admin');
 
-var serviceAccount = process.env.FIREBASE_SERVICE_ACCOUNT_CREDS;
+const Firebase_Config = Buffer.from(JSON.stringify({
+  "project_id": process.env.FIREBASE_PROJECT_ID,
+  "private_key_id": process.env.FIREBASE_PRIVATE_KEY_ID.replace(/\\n/g, '\n'),
+  "private_key": "",
+  "client_email": process.env.FIREBASE_CLIENT_EMAIL
+})).toString('base64');
 
-var rawFireBaseConfig = JSON.stringify(Buffer.from(serviceAccount, 'base64').toString('ascii'));
-//.replace(/\\n/g, '\n')
-console.log('serviceAccount (Buffer Value): ' + rawFireBaseConfig);
 
-if (!serviceAccount) throw new Error('The FIREBASE_SERVICE_ACCOUNT_CREDS environment variable was not found!');
+if (!Firebase_Config) throw new Error('The FIREBASE_SERVICE_ACCOUNT_CREDS environment variable was not found!');
 
 firebaseAdmin.initializeApp({
-  credential: firebaseAdmin.credential.cert(rawFireBaseConfig)
+  credential: firebaseAdmin.credential.cert(JSON.parse(Firebase_Config).toString('ascii'))
 })
 
 module.exports = firebaseAdmin;
