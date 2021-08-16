@@ -1,7 +1,7 @@
 var firebaseAdmin = require('firebase-admin');
 
 const Firebase_Config = JSON.stringify({
-  "type": process.env.FIREBASE.TYPE,
+  "type": process.env.FIREBASE_TYPE,
   "project_id": process.env.FIREBASE_PROJECT_ID,
   "private_key_id": process.env.FIREBASE_PRIVATE_KEY_ID,
   "private_key": process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
