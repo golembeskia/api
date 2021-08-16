@@ -20,7 +20,7 @@ if (!Firebase_Config) throw new Error('The FIREBASE_SERVICE_ACCOUNT_CREDS enviro
 
 firebaseAdmin.initializeApp({
   //credential: firebaseAdmin.credential.cert(Firebase_Config.toString())
-  credential: firebaseAdmin.credential.cert(JSON.parse(Firebase_Config))
+  credential: firebaseAdmin.credential.cert(JSON.stringify(Firebase_Config))
 })
 
 module.exports = firebaseAdmin;
