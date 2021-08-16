@@ -9,12 +9,12 @@ const buff = Buffer.from(serviceAccount, 'base64');
 // decode buffer as UTF-8
 const str = buff.toString('ascii');
 
-console.log('serviceAccount: ' + JSON.parse(str));
+console.log('serviceAccount: ' + JSON.parse(str).toString('ascii'));
 
 if (!serviceAccount) throw new Error('The FIREBASE_SERVICE_ACCOUNT_CREDS environment variable was not found!');
 
 admin.initializeApp({
-  credential: admin.credential.cert(JSON.parse(str))
+  credential: admin.credential.cert(JSON.parse(str).toString('ascii'))
 })
 
 module.exports = admin;
