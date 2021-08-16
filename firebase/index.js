@@ -3,7 +3,7 @@ const admin = require('firebase-admin');
 const serviceAccount = process.env.FIREBASE_SERVICE_ACCOUNT_CREDS;
 console.log('serviceAccount (Encoded): ' + serviceAccount);
 
-const fireBaseConfig = JSON.parse(Buffer.from(serviceAccount, 'base64').toString('ascii'));
+const fireBaseConfig = JSON.parse(Buffer.from(serviceAccount, 'base64').toString('ascii')).toString();
 
 console.log('serviceAccount: ' + fireBaseConfig);
 
