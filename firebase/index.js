@@ -19,7 +19,7 @@ const firebaseApp =
       authProviderX509CertUrl: process.env.FIREBASE_AUTH_PROVIDER,
       clientX509CertUrl: process.env.FIREBASE_CLIENT,
   }),
-  databaseURL: https://${process.env.FIREBASE_PROJECT_ID}.firebaseio.com/
+  databaseURL: `https://${process.env.FIREBASE_PROJECT_ID}.firebaseio.com/`
 })
 
 global.firebaseApp = firebaseApp
