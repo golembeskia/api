@@ -1,4 +1,5 @@
 const fireBaseAdmin = require('firebase-admin');
+const admin = require('firebase-admin');
 /*
 const fireBase_Data = {
   "type": process.env.FIREBASE_TYPE,
