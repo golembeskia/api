@@ -21,6 +21,7 @@ const firebaseApp =
   }),
   databaseURL: `https://${process.env.FIREBASE_PROJECT_ID}.firebaseio.com/`
 })
+console.log(`fireBase for project ${process.env.FIREBASE_PROJECT_ID} has started`)
 
 global.firebaseApp = firebaseApp
 module.exports = fireBaseAdmin
