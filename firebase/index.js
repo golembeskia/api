@@ -33,7 +33,7 @@ fireBaseAdmin.initializeApp({
     "token_uri": process.env.FIREBASE_TOKEN_URI,
     "auth_provider_x509_cert_url": process.env.FIREBASE_AUTH_PROVIDER,
     "client_x509_cert_url": process.env.FIREBASE_CLIENT
-  }));
+  }))
 });
 
 module.exports = fireBaseAdmin;
