@@ -1,6 +1,6 @@
-var fireBaseAdmin = require('firebase-admin');
+const fireBaseAdmin = require('firebase-admin');
 
-var fireBase_Data = {
+const fireBase_Data = {
   "type": process.env.FIREBASE_TYPE,
   "project_id": process.env.FIREBASE_PROJECT_ID,
   "private_key_id": process.env.FIREBASE_PRIVATE_KEY_ID,
@@ -13,7 +13,7 @@ var fireBase_Data = {
   "client_x509_cert_url": process.env.FIREBASE_CLIENT
 }
 
-var fireBase_Config = JSON.stringify(fireBase_Data);
+const fireBase_Config = JSON.stringify(fireBase_Data);
 
 //.replace(/\\n/g, '\n')
 if (!fireBase_Config) 
