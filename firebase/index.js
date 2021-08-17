@@ -21,7 +21,7 @@ const fireBase_Config = JSON.stringify(fireBase_Data);
 if (!fireBaseAdmin) 
   throw new Error('The FIREBASE_SERVICE_ACCOUNT_CREDS environment variable was not found!');
 
-fireBaseAdmin.initializeApp({
+fireBaseAdmin.initializeApp({JSON.stringify({
   "credential": fireBaseAdmin.credential.cert({
     "type": process.env.FIREBASE_TYPE,
     "project_id": process.env.FIREBASE_PROJECT_ID,
@@ -33,6 +33,7 @@ fireBaseAdmin.initializeApp({
     "token_uri": process.env.FIREBASE_TOKEN_URI,
     "auth_provider_x509_cert_url": process.env.FIREBASE_AUTH_PROVIDER,
     "client_x509_cert_url": process.env.FIREBASE_CLIENT
+  }
   })
 });
 
