@@ -9,7 +9,7 @@ const firebaseApp =
   fireBaseAdmin.initializeApp({
     credential: admin.credential.cert({
       type: process.env.FIREBASE_TYPE,
-      projectid: process.env.FIREBASE_PROJECT_ID,
+      projectId: process.env.FIREBASE_PROJECT_ID,
       privateKeyId: process.env.FIREBASE_PRIVATE_KEY_ID,
       privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
       clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
@@ -19,7 +19,7 @@ const firebaseApp =
       authProviderX509CertUrl: process.env.FIREBASE_AUTH_PROVIDER,
       clientX509CertUrl: process.env.FIREBASE_CLIENT,
   }),
-  databaseURL: `https://${process.env.FIREBASE_PROJECT_ID}.firebaseio.com/`
+  databaseURL: https://${process.env.FIREBASE_PROJECT_ID}.firebaseio.com/
 })
 
 global.firebaseApp = firebaseApp
