@@ -1,0 +1,55 @@
+# This workflow will do a clean install of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: 'Continuous Integration'
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x, 16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+    - name: Scanning for Credentials with Trufflehog Actions Scan
+      uses: edplato/trufflehog-actions-scan@v0.9k-beta
+    - name: Image Optimizer
+      uses: crush-pics/crush-pics-github-action@v1.0
+    - uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        repository: 'golembeskia/api'
+        commit_message: "Github Action: Optimized Images and commit"
+        branch: ${{ github.ref }}
+    - run: npm ci
+    - run: npm run build --if-present
+    - run: npm test
+    - uses: nizarmah/auto-minify@v2
+      with:
+        directory: 'js'
+        output: 'mini_js'
+    - uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        repository: 'golembeskia/api'
+        commit_message: "Github Action: Auto Minified JS and CSS files and commit"
+        branch: ${{ github.ref }}
+    - uses: mikeal/bundle-size-action@1.0.0
+    - uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        repository: 'golembeskia/api'
+        commit_message: "Github Action: Bundled JS commit"
+        branch: ${{ github.ref }}
