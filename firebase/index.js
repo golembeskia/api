@@ -1,3 +1,7 @@
+const dotenv = require('dotenv');
+dotenv.load();
+
+
 const fireBaseAdmin = require('firebase-admin');
 /*
 const fireBase_Data = {
