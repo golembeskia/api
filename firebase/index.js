@@ -1,7 +1,7 @@
 var firebaseAdmin = require('firebase-admin');
 
-//const Firebase_Config = JSON.stringify({
-const Firebase_Config = ({
+const Firebase_Config = JSON.stringify({
+//const Firebase_Config = ({
   "type": process.env.FIREBASE_TYPE,
   "project_id": process.env.FIREBASE_PROJECT_ID,
   "private_key_id": process.env.FIREBASE_PRIVATE_KEY_ID,
@@ -20,7 +20,8 @@ if (!Firebase_Config) throw new Error('The FIREBASE_SERVICE_ACCOUNT_CREDS enviro
 
 firebaseAdmin.initializeApp({
   //credential: firebaseAdmin.credential.cert(Firebase_Config.toString())
-  credential: firebaseAdmin.credential.cert(JSON.stringify(Firebase_Config))
+  //credential: firebaseAdmin.credential.cert(JSON.stringify(Firebase_Config))
+  credential: firebaseAdmin.credential.cert(JSON.parse(Firebase_Config))
 })
 
 module.exports = firebaseAdmin;
