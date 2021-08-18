@@ -1,5 +1,4 @@
 name: 'Continuous Integration'
-
 on:
   push:
     branches: [ '**' ]
@@ -46,7 +45,8 @@ jobs:
     - run: npm run build --if-present
     - run: npm test
     
-    - uses: nizarmah/auto-minify@1.9.1
+    - name: Auto Minify
+      uses: nizarmah/auto-minify@v2.0
       with:
         directory: 'js'
         output: 'mini_js'
@@ -64,3 +64,6 @@ jobs:
         repository: 'golembeskia/api'
         commit_message: "Github Action: Bundled JS commit"
         branch: ${{ github.ref }}
+    
+    - name: Workflow Run Wait
+      uses: ahmadnassri/action-workflow-run-wait@v1.4.2
