@@ -46,7 +46,7 @@ jobs:
     - run: npm run build --if-present
     - run: npm test
     
-    - uses: nizarmah/auto-minify@l1.9.1
+    - uses: nizarmah/auto-minify@1.9.1
       with:
         directory: 'js'
         output: 'mini_js'
