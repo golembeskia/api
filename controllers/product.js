@@ -21,6 +21,7 @@ exports.listAll = async (req, res) => {
   let products = await Product.find({})
     .limit(parseInt(req.params.count))
     .populate("category")
+    .populate("brand")
     .populate("subs")
     .sort([["createdAt", "desc"]])
     .exec();
