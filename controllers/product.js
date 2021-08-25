@@ -22,6 +22,7 @@ exports.listAll = async (req, res) => {
     .limit(parseInt(req.params.count))
     .populate("category")
     .populate("brand")
+    .populate("diet")
     .populate("subs")
     .sort([["createdAt", "desc"]])
     .exec();
