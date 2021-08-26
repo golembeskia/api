@@ -4,22 +4,18 @@ on:
   workflow_run:
     workflows: ["Continuous Integration"]
     types: [completed]
-
 jobs:
-  
   Deploy:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         node-version: [16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-    
     steps:
       - name: Checking out Shelf Health API coder
-      - uses: actions/checkout@v2      
-      
-      - name: Deploying to Heroku 
-      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+      - uses: actions/checkout@v2
+
+      - name: Deploying to Heroku
+      - uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: ${{secrets.HEROKU_APP_NAME}}

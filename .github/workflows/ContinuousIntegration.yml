@@ -2,19 +2,22 @@ name: "Continuous Integration"
 on:
   push:
     branches:
-    - "main"
-    - "development"
-    - "staging"
-    - "performanceTesting"
-    - "patch"
-  pull_request: 
-    branches: 
-    - "main"
-    - "development"
-    - "staging"
-    - "performanceTesting"
-    - "patch"
+      - "main"
+      - "development"
+      - "staging"
+      - "performanceTesting"
+      - "patch"
+
+  pull_request:
+    branches:
+      - "main"
+      - "development"
+      - "staging"
+      - "performanceTesting"
+      - "patch"
+
   workflow_dispatch:
+
 jobs:
   CI:
     name: Scanning Shelf Health for credentials and secrets
@@ -22,37 +25,33 @@ jobs:
     strategy:
       matrix:
         node-version: [16.x]
+
     steps:
-    - name: Checkout repository
-    - uses: actions/checkout@v2
+      - name: Checkout repository
+      - uses: actions/checkout@v2
 
-    - name: Setting up a ${{ matrix.node-version }} Node environment
-    - uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    
-    - name: Package Scanner
-    - run: |
-        npm install npm-package-scanner -g
-        npm-package-scanner --package ./package.json --file output.json
-      working-directory: ./
-    
-    - name: Lint code for common issues
-    - uses: github/super-linter@v4.6.2
-    
-    - name: Install Shelf Health
-    - run: npm install
-    
-    # Initializes the CodeQL tools for scanning.
-    - name: Initialize Code QL analysis tool
-    - uses: github/codeql-action/init@v1
-      with:
-        languages: ${{ matrix.language }}
-        # If you wish to specify custom queries, you can do so here or in a config file.
-        # By default, queries listed here will override any specified in a config file.
-        # Prefix the list here with "+" to use these queries and those in the config file.
-        # queries: ./path/to/local/query, your-org/your-repo/queries@main
+      - name: Setting up a ${{ matrix.node-version }} Node environment
+      - uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
 
-    - name: Perform Code QL analysis
-    - uses: github/codeql-action/analyze@v1
+      - name: Package Scanner
+      - run: |
+          npm install npm-package-scanner -g
+          npm-package-scanner --package ./package.json --file output.json
+        working-directory: ./
+
+      - name: Lint code for common issues
+      - uses: github/super-linter@v4.6.2
+
+      - name: Install Shelf Health
+      - run: npm install
+
+      - name: Initialize Code QL analysis tool
+      - uses: github/codeql-action/init@v1
+        with:
+          languages: ${{ matrix.language }}
+
+      - name: Perform Code QL analysis
+      - uses: github/codeql-action/analyze@v1
