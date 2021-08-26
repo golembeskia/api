@@ -7,6 +7,9 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: ['16']
     steps:
       - name: Checking out Shelf Health API coder
         uses: actions/checkout@v2
