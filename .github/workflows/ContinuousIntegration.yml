@@ -34,6 +34,12 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     
+    - name: Package Scan
+      run: |
+        npm install npm-package-scanner -g
+        npm-package-scanner --package ./package.json --file output.json
+        working-directory: ./
+    
     - run: npm install
     
     # Initializes the CodeQL tools for scanning.
@@ -48,5 +54,3 @@ jobs:
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
-   
-    
