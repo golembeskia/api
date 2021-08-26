@@ -16,9 +16,14 @@ on:
     - "patch"
     
 jobs:
-  ScanForCredentials:
+  CI:
     name: Scanning Shelf Health for credentials and secrets
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
@@ -28,7 +33,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-
+    
+    - run: npm install
+    
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v1
@@ -39,46 +46,7 @@ jobs:
         # Prefix the list here with "+" to use these queries and those in the config file.
         # queries: ./path/to/local/query, your-org/your-repo/queries@main
 
-    - uses: actions/checkout@v2
-    - name: Use Node version ${{ matrix.node-version }} for Shelf Health API
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
-  
-  Build:
-    name: Build Shelf Health Node API application
-    runs-on: ubuntu-latest 
-    needs: ScanForCredentials
-    strategy:
-      matrix:
-        node-version: [16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+   
     
-    steps:
-    - uses: actions/checkout@v2
-    - name: Use Node version ${{ matrix.node-version }} for Shelf Health API
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm install
-    - run:  npm run build --if-present
-  
-  Test:
-    name: Unit Testing Shelf Health API with Node version ${{ matrix.node-version }}
-    runs-on: ubuntu-latest
-    needs: Build
-    steps:
-     - uses: actions/checkout@v2
-     - name: Use Node version ${{ matrix.node-version }} for Shelf Health API
-       uses: actions/setup-node@v2
-       with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'     
-     - run: npm install
-     - run: npm run build --if-present
-     - run: npm test 
