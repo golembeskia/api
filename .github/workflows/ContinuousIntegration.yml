@@ -28,22 +28,26 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Using Node
+    - name: Setting up a ${{ matrix.node-version }} Node environment
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     
-    - name: Package Scan
+    - name: Package Scanner
       run: |
         npm install npm-package-scanner -g
         npm-package-scanner --package ./package.json --file output.json
       working-directory: ./
     
+    - name: Lint code for common issues
+      uses: github/super-linter@v4.6.2
+    
+    - name: Install Shelf Health
     - run: npm install
     
     # Initializes the CodeQL tools for scanning.
-    - name: Initialize CodeQL
+    - name: Initialize Code QL analysis tool
       uses: github/codeql-action/init@v1
       with:
         languages: ${{ matrix.language }}
@@ -52,5 +56,5 @@ jobs:
         # Prefix the list here with "+" to use these queries and those in the config file.
         # queries: ./path/to/local/query, your-org/your-repo/queries@main
 
-    - name: Perform CodeQL Analysis
+    - name: Perform Code QL analysis
       uses: github/codeql-action/analyze@v1
