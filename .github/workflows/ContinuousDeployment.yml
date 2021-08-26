@@ -1,16 +1,24 @@
-name: Deploy
-
+name: "Continuous Deployment"
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
+  workflow_run:
+    workflows: ["Continuous Integration"]
+    types: [completed]
 
 jobs:
-  build:
+  
+  Deploy:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+    
     steps:
-      - uses: actions/checkout@v2
+      - name: Checking out Shelf Health API coder
+      - uses: actions/checkout@v2      
+      
+      - name: Deploying to Heroku 
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
