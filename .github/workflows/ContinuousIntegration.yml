@@ -14,7 +14,7 @@ on:
     - "staging"
     - "performanceTesting"
     - "patch"
-    
+  workflow_dispatch:
 jobs:
   CI:
     name: Scanning Shelf Health for credentials and secrets
