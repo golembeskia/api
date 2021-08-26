@@ -38,7 +38,7 @@ jobs:
       run: |
         npm install npm-package-scanner -g
         npm-package-scanner --package ./package.json --file output.json
-        working-directory: ./
+      working-directory: ./
     
     - run: npm install
     
