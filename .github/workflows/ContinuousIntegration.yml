@@ -14,6 +14,7 @@ on:
     - "staging"
     - "performanceTesting"
     - "patch"
+  workflow_dispatch:
 jobs:
   CI:
     name: Scanning Shelf Health for credentials and secrets
@@ -25,7 +26,7 @@ jobs:
         
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+    - uses: actions/checkout@v2
 
     - name: Setting up a ${{ matrix.node-version }} Node environment
     - uses: actions/setup-node@v2
