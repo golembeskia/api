@@ -4,7 +4,9 @@
   "description": "Shelf Health API",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server.js" 
+    "install": "npm install -g",
+    "start": "nodemon server.js",
+    "test": "node test.js"
   },
   "keywords": [],
   "author": "Shelf Health",
