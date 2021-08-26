@@ -1,17 +1,19 @@
 name: "Continuous Deployment"
 on:
-  workflow_run:
-    workflows: 
-    - "Continuous Integration"
-    types: 
-    - completed
   workflow_dispatch:
+  workflow_run:
+    workflows: ["Continuous Integration"]
+    types: [completed]
+
 jobs:
-  build:
+  
+  Deploy:
     runs-on: ubuntu-latest
+    
     steps:
       - name: Checking out Shelf Health API coder
       - uses: actions/checkout@v2      
+      
       - name: Deploying to Heroku 
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
