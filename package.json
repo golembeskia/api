@@ -4,9 +4,11 @@
   "description": "Shelf Health API",
   "main": "index.js",
   "scripts": {
-    "install": "npm install -g",
-    "start": "nodemon server.js",
-    "test": "node test.js"
+    "start": "nodemon server.js"
+  },
+  "engines": {
+    "node": ">=16.3.0",
+    "npm": ">=7.15.1"
   },
   "keywords": [],
   "author": "Shelf Health",
@@ -21,12 +23,12 @@
     "firebase-admin": "^9.11.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.13.7",
-    "morgan": "^1.10.0",    
+    "morgan": "^1.10.0",
     "slugify": "^1.6.0",
-    "eslint": "^7.0.0"
+    "eslint": "^8.0.0"
   },
   "devDependencies": {
-    "eslint": "^7.0.0",
+    "eslint": "^8.0.0",
     "nodemon": "^2.0.12"
   }
 }
