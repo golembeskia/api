@@ -1,12 +1,14 @@
 name: Continuous-Deployment
 on:
   workflow_run:
-    workflows: [Continuous-Integration]
-    types: [completed]
+    workflows: ["Continuous-Integration"]
+    types:
+      - completed
     workflow_dispatch:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     strategy:
       matrix:
         node: ["16"]
