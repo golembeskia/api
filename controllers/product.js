@@ -336,7 +336,7 @@ const handleDiet = async (req, res, diet) => {
 
 const handleIngredient = async (req, res, ingredient) => {
   try {
-    let products = await Product.find({ ingredient })
+    let products = await Product.find({ ingredient: { $eq: ingredient } })
       .populate("category", "_id name")
       .populate("subs", "_id name")
       .populate("postedBy", "_id name")
