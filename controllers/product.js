@@ -256,22 +256,8 @@ const handleSub = async (req, res, sub) => {
   }
 }
 
-// const handleCategory = async (req, res, category) => {
-//   try {
-//     let products = await Product.find({ category })
-//       .populate("category", "_id name")
-//       .populate("subs", "_id name")
-//       .populate("postedBy", "_id name")
-//       .exec();
-
-//     res.json(products);
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
-
 const handleShipping = async (req, res, shipping) => {
-  const products = await Product.find({ shipping })
+  const products = await Product.find({ shipping: { $eq: shipping } })
     .populate('category', '_id name')
     .populate('subs', '_id name')
     .populate('postedBy', '_id name')
@@ -281,7 +267,7 @@ const handleShipping = async (req, res, shipping) => {
 }
 
 const handleColor = async (req, res, color) => {
-  const products = await Product.find({ color })
+  const products = await Product.find({ color: { $eq: color } })
     .populate('category', '_id name')
     .populate('subs', '_id name')
     .populate('postedBy', '_id name')
@@ -291,7 +277,7 @@ const handleColor = async (req, res, color) => {
 }
 
 const handleSort = async (req, res, sort) => {
-  const products = await Product.find({ sort })
+  const products = await Product.find({ sort: { $eq: sort } })
     .populate('category', '_id name')
     .populate('subs', '_id name')
     .populate('postedBy', '_id name')
@@ -301,7 +287,7 @@ const handleSort = async (req, res, sort) => {
 }
 
 const handleBrand = async (req, res, brand) => {
-  const products = await Product.find({ brand })
+  const products = await Product.find({ brand: { $eq: brand } })
     .populate('category', '_id name')
     .populate('subs', '_id name')
     .populate('postedBy', '_id name')
@@ -322,7 +308,7 @@ const handleBrand = async (req, res, brand) => {
 
 const handleDiet = async (req, res, diet) => {
   try {
-    const products = await Product.find({ diet })
+    const products = await Product.find({ diet: { $eq: diet } })
       .populate('category', '_id name')
       .populate('subs', '_id name')
       .populate('postedBy', '_id name')
