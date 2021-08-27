@@ -1,8 +1,7 @@
-const fireBaseAdmin = require('firebase-admin');
-const admin = require('firebase-admin');
+const fireBaseAdmin = require('firebase-admin')
+const admin = require('firebase-admin')
 
-if (!fireBaseAdmin) 
-  throw new Error('The FIREBASE_SERVICE_ACCOUNT_CREDS environment variable was not found!');
+if (!fireBaseAdmin) { throw new Error('The FIREBASE_SERVICE_ACCOUNT_CREDS environment variable was not found!') }
 
 const firebaseApp =
   global.firebaseApp ??
@@ -17,10 +16,10 @@ const firebaseApp =
       authUri: process.env.FIREBASE_AUTH_URI,
       tokenUri: process.env.FIREBASE_TOKEN_URI,
       authProviderX509CertUrl: process.env.FIREBASE_AUTH_PROVIDER,
-      clientX509CertUrl: process.env.FIREBASE_CLIENT,
-  }),
-  databaseURL: `https://${process.env.FIREBASE_PROJECT_ID}.firebaseio.com/`
-})
+      clientX509CertUrl: process.env.FIREBASE_CLIENT
+    }),
+    databaseURL: `https://${process.env.FIREBASE_PROJECT_ID}.firebaseio.com/`
+  })
 console.log(`fireBase for project ${process.env.FIREBASE_PROJECT_ID} has started`)
 
 global.firebaseApp = firebaseApp

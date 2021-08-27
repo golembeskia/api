@@ -1,20 +1,20 @@
-const express = require("express");
+const express = require('express')
 
-const router = express.Router();
+const router = express.Router()
 
 // middlewares
-const { authCheck } = require("../middlewares/auth");
+const { authCheck } = require('../middlewares/auth')
 // controllers
 const {
   addToWishlist,
   wishlist,
-  removeFromWishlist,
-} = require("../controllers/user");
+  removeFromWishlist
+} = require('../controllers/user')
 
 // wishlist
-router.post("/user/wishlist", authCheck, addToWishlist);
-router.get("/user/wishlist", authCheck, wishlist);
-router.put("/user/wishlist/:productId", authCheck, removeFromWishlist);
+router.post('/user/wishlist', authCheck, addToWishlist)
+router.get('/user/wishlist', authCheck, wishlist)
+router.put('/user/wishlist/:productId', authCheck, removeFromWishlist)
 
 // router.get("/user", (req, res) => {
 //   res.json({
@@ -22,4 +22,4 @@ router.put("/user/wishlist/:productId", authCheck, removeFromWishlist);
 //   });
 // });
 
-module.exports = router;
+module.exports = router
