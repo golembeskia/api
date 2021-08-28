@@ -1,7 +1,6 @@
 const Ingredient = require('../models/ingredient')
 const Product = require('../models/product')
 const slugify = require('slugify')
-const ingredient = require('../models/ingredient')
 
 exports.create = async (req, res) => {
   try {

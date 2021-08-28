@@ -1,7 +1,6 @@
 const Diet = require('../models/diet')
 const Product = require('../models/product')
 const slugify = require('slugify')
-const diet = require('../models/diet')
 
 exports.create = async (req, res) => {
   try {
