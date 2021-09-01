@@ -482,7 +482,6 @@ exports.read = async (req, res) => {
   const product = await Product.findOne({ slug: req.params.slug })
     .populate("category")
     .populate("subs")
-    .populate("diet")
     .populate("ingredient")
     .exec();
   res.json(product);
@@ -643,7 +642,6 @@ const handleCategory = async (req, res, category) => {
     let products = await Product.find({ category })
       .populate("category", "_id name")
       .populate("subs", "_id name")
-      .populate("diet", "_id name")
       .populate("postedBy", "_id name")
       .exec();
 
@@ -685,7 +683,6 @@ const handleSub = async (req, res, sub) => {
     let products = await Product.find({ subs: sub })
       .populate("category", "_id name")
       .populate("subs", "_id name")
-      .populate("diet", "_id name")
       .populate("postedBy", "_id name")
       .exec();
 
@@ -743,7 +740,6 @@ const handleBrand = async (req, res, brand) => {
   const products = await Product.find({ brand })
     .populate("category", "_id name")
     .populate("brand", "_id name")
-    .populate("diet", "_id name")
     .populate("subs", "_id name")
     .populate("postedBy", "_id name")
     .exec();
@@ -766,7 +762,6 @@ const handleDiet = async (req, res, diet) => {
     let products = await Product.find({ diet })
       .populate("category", "_id name")
       .populate("diet", "_id name")
-      .populate("diet", "_id name")
       .populate("subs", "_id name")
       .populate("postedBy", "_id name")
       .exec();
@@ -782,7 +777,6 @@ const handleIngredient = async (req, res, ingredient) => {
     let products = await Product.find({ ingredient })
       .populate("category", "_id name")
       .populate("subs", "_id name")
-      .populate("diet", "_id name")
       .populate("postedBy", "_id name")
       .exec();
 
