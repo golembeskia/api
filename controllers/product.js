@@ -538,6 +538,7 @@ exports.list = async (req, res) => {
       .skip((currentPage - 1) * perPage)
       .populate("category")
       .populate("subs")
+      .populate("diet")
       .sort([[sort, order]])
       .limit(perPage)
       .exec();
