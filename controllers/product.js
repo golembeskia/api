@@ -482,6 +482,8 @@ exports.read = async (req, res) => {
   const product = await Product.findOne({ slug: req.params.slug })
     .populate("category")
     .populate("subs")
+    .populate("brand")
+    .populate("diet")
     .populate("ingredient")
     .exec();
   res.json(product);
