@@ -3,7 +3,6 @@ const mongoose = require('mongoose')
 const morgan = require('morgan')
 const cors = require('cors')
 const { readdirSync } = require('fs')
-require('dotenv').config()
 
 // app
 const app = express()
